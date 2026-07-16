@@ -284,6 +284,16 @@ button {
   .arrow-left { left: 10px; }
   .arrow-right { right: 10px; }
   .arrow:disabled { opacity: 0.3; cursor: default; }
+
+  /* 본문을 읽기 폭으로 좁히고, 좌우 패딩을 화살표 영역(약 54px) 밖으로 확보해 겹침 방지 */
+  .card-text {
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 72px;
+    padding-right: 72px;
+  }
+  .card-media img { max-width: 640px; }
 }
 
 .bottombar {
