@@ -271,6 +271,33 @@ button {
 .quiz-body { font-size: 17px; }
 .quiz-body strong { color: var(--accent); }
 
+.reveal-btn {
+  margin-top: 24px;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+}
+.reveal-btn:active { opacity: 0.85; }
+
+.quiz-answer {
+  margin-top: 20px;
+  padding: 16px 18px;
+  background: rgba(217, 119, 46, 0.08);
+  border: 1px solid rgba(217, 119, 46, 0.25);
+  border-radius: 12px;
+}
+.answer-label {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
 .arrow {
   display: none;
 }

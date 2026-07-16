@@ -87,7 +87,14 @@
       '<section class="card quiz-card">' +
         '<div class="card-text">' +
           '<h2 class="card-heading">셀프 체크</h2>' +
-          '<div class="card-body quiz-body">' + lesson.quiz + '</div>' +
+          '<div class="card-body quiz-body">' + (lesson.quiz.q || lesson.quiz) + '</div>' +
+          (lesson.quiz.a ?
+            '<button class="reveal-btn" id="revealBtn">정답 보기</button>' +
+            '<div class="quiz-answer" id="quizAnswer" hidden>' +
+              '<div class="answer-label">정답</div>' +
+              '<div class="card-body">' + lesson.quiz.a + '</div>' +
+            '</div>'
+          : '') +
         '</div>' +
       '</section>'
     );
@@ -160,6 +167,11 @@
     document.getElementById('prevBtn').addEventListener('click', function () { goTo(current - 1); });
     document.getElementById('nextBtn').addEventListener('click', function () { goTo(current + 1); });
     document.getElementById('backBtn').addEventListener('click', function () { location.hash = '#/'; });
+    var revealBtn = document.getElementById('revealBtn');
+    if (revealBtn) revealBtn.addEventListener('click', function () {
+      document.getElementById('quizAnswer').hidden = false;
+      revealBtn.hidden = true;
+    });
 
     activeKeyHandler = function (e) {
       if (e.key === 'ArrowRight') goTo(current + 1);
