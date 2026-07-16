@@ -29,14 +29,18 @@
 
   function renderHome() {
     clearKeyHandler();
+    // 외단열 시스템 = 시공 순서(층)대로: 단열재 → 메쉬·부자재 → 마감 바름재
     var groups = [
-      { label: '외단열 (EP1~5)', series: '외단열' },
-      { label: '바름재 (EP6~10)', series: '바름재' },
+      { label: '① 단열재 — 바탕 단열층', desc: 'EP1~3', eps: [1, 2, 3] },
+      { label: '② 메쉬 · 부자재 — 보강층', desc: 'EP4~5', eps: [4, 5] },
+      { label: '③ 마감 바름재 — 피니시층', desc: 'EP6~10', eps: [6, 7, 8, 9, 10] },
     ];
-    var html = '<div class="home"><div class="home-title">외단열·바름재 강의</div>';
+    var epNum = function (l) { return parseInt(l.id.replace(/\D/g, ''), 10); };
+    var html = '<div class="home"><div class="home-title">외단열 시공 A to Z</div>' +
+      '<div class="home-sub">단열재부터 마감 바름재까지, 시공 순서대로 (전 10강)</div>';
     groups.forEach(function (g) {
-      var items = LESSONS.filter(function (l) { return l.series === g.series; });
-      html += '<div class="series-heading">' + escapeHtml(g.label) + '</div><div class="tile-list">';
+      var items = LESSONS.filter(function (l) { return g.eps.indexOf(epNum(l)) !== -1; });
+      html += '<div class="series-heading">' + escapeHtml(g.label) + ' <span class="series-range">' + escapeHtml(g.desc) + '</span></div><div class="tile-list">';
       items.forEach(function (l) {
         var thumb = l.cards[0] ? l.cards[0].img : '';
         html += '' +

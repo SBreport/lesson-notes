@@ -47,8 +47,20 @@ button {
 .home-title {
   font-size: 22px;
   font-weight: 800;
-  margin: 8px 4px 20px;
+  margin: 8px 4px 4px;
   color: var(--text);
+}
+
+.home-sub {
+  font-size: 14px;
+  color: var(--text-sub);
+  margin: 0 4px 22px;
+}
+
+.series-range {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-sub);
 }
 
 .series-heading {
