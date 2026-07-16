@@ -3,6 +3,37 @@
   var LESSONS = window.LESSONS || [];
   var activeKeyHandler = null;
 
+  /* ---------- 테마 토글 (기본=기기 설정, 누르면 수동 고정) ---------- */
+  var SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>';
+  var MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+
+  function isDark() {
+    var t = document.documentElement.getAttribute('data-theme');
+    if (t) return t === 'dark';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function paintToggle() {
+    var btn = document.getElementById('themeToggle');
+    if (!btn) return;
+    // 다크일 때는 '해'(라이트로 전환), 라이트일 때는 '달'(다크로 전환)
+    btn.innerHTML = isDark() ? SUN : MOON;
+  }
+  function initTheme() {
+    var btn = document.getElementById('themeToggle');
+    if (!btn) return;
+    paintToggle();
+    btn.addEventListener('click', function () {
+      var next = isDark() ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paintToggle();
+    });
+    // 수동 고정 전에는 기기 설정 변화 추종
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
+      if (!document.documentElement.getAttribute('data-theme')) paintToggle();
+    });
+  }
+
   function clearKeyHandler() {
     if (activeKeyHandler) {
       document.removeEventListener('keydown', activeKeyHandler);
@@ -216,5 +247,6 @@
   }
 
   window.addEventListener('hashchange', render);
+  initTheme();
   render();
 })();

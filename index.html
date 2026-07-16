@@ -7,7 +7,16 @@
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+<script>
+// 저장된 테마를 렌더 전에 적용 (깜빡임 방지)
+(function () {
+  var t = null;
+  try { t = localStorage.getItem('theme'); } catch (e) {}
+  if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+})();
+</script>
 <div id="app"></div>
+<button id="themeToggle" class="theme-toggle" aria-label="라이트/다크 전환" title="라이트/다크 전환"></button>
 <script src="data/content.js"></script>
 <script src="assets/js/app.js"></script>
 </body>
