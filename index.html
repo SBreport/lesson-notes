@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>외단열·바름재 강의 노트</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <style>
+    :root {
+      --theme-color: #D9772E;
+      --sidebar-width: 280px;
+    }
+    body { font-family: 'Malgun Gothic', 'Noto Sans KR', sans-serif; }
+    .sidebar { background: #F5F0E6; }
+    .sidebar ul li.active > a { color: #D9772E; border-right: 2px solid #D9772E; }
+    .markdown-section img { border-radius: 10px; box-shadow: 0 6px 16px rgba(0,0,0,.08); }
+    .app-name-link { color: #3A362F !important; font-weight: 800; }
+  </style>
+</head>
+<body>
+  <div id="app">로딩 중…</div>
+  <script>
+    window.$docsify = {
+      name: '외단열·바름재 강의 노트',
+      loadSidebar: true,
+      subMaxLevel: 2,
+      auto2top: true,
+      homepage: 'README.md',
+      search: { placeholder: '검색', noData: '결과 없음', depth: 3 },
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
+</body>
+</html>
