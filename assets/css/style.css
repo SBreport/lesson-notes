@@ -272,34 +272,26 @@ button {
   line-height: 1.7;
 }
 
-.quiz-body { font-size: 17px; }
-.quiz-body strong { color: var(--accent); }
+/* 셀프체크 카드 (질문 / 질문+정답) */
+.quiz-q, .quiz-qa { list-style: none; margin: 8px 0 0; padding: 0; }
+.quiz-q li { font-size: 17px; line-height: 1.6; margin-bottom: 16px; }
+.q-num { color: var(--accent); font-weight: 800; margin-right: 4px; }
+.a-num { color: var(--cold); font-weight: 800; margin-right: 4px; }
 
-.reveal-btn {
-  margin-top: 24px;
-  width: 100%;
-  padding: 14px;
-  border: none;
+.quiz-qa li {
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  background: rgba(217, 119, 46, 0.06);
   border-radius: 12px;
-  background: var(--accent);
-  color: #fff;
-  font-size: 16px;
-  font-weight: 700;
 }
-.reveal-btn:active { opacity: 0.85; }
+.qa-q { font-size: 16px; line-height: 1.5; }
+.qa-a { font-size: 16px; line-height: 1.5; margin-top: 6px; color: var(--text); }
 
-.quiz-answer {
+.quiz-hint {
   margin-top: 20px;
-  padding: 16px 18px;
-  background: rgba(217, 119, 46, 0.08);
-  border: 1px solid rgba(217, 119, 46, 0.25);
-  border-radius: 12px;
-}
-.answer-label {
   font-size: 14px;
-  font-weight: 800;
-  color: var(--accent);
-  margin-bottom: 8px;
+  color: var(--text-sub);
+  text-align: right;
 }
 
 .arrow {

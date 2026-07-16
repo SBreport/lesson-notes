@@ -63,6 +63,33 @@
     });
   }
 
+  // 셀프체크 = 2카드: ① 질문만  ② 질문+정답
+  function quizCards(quiz) {
+    var q = (quiz && quiz.questions) || [];
+    var a = (quiz && quiz.answers) || [];
+    if (!q.length) return [];
+    var qList = q.map(function (x, i) {
+      return '<li><span class="q-num">Q' + (i + 1) + '.</span> ' + escapeHtml(x) + '</li>';
+    }).join('');
+    var qaList = q.map(function (x, i) {
+      return '<li>' +
+        '<div class="qa-q"><span class="q-num">Q' + (i + 1) + '.</span> ' + escapeHtml(x) + '</div>' +
+        '<div class="qa-a"><span class="a-num">A.</span> ' + escapeHtml(a[i] || '') + '</div>' +
+      '</li>';
+    }).join('');
+    return [
+      '<section class="card quiz-card"><div class="card-text">' +
+        '<h2 class="card-heading">셀프 체크</h2>' +
+        '<ul class="quiz-q">' + qList + '</ul>' +
+        '<div class="quiz-hint">넘겨서 정답 확인 →</div>' +
+      '</div></section>',
+      '<section class="card quiz-card"><div class="card-text">' +
+        '<h2 class="card-heading">셀프 체크 · 정답</h2>' +
+        '<ul class="quiz-qa">' + qaList + '</ul>' +
+      '</div></section>'
+    ];
+  }
+
   function renderEpisode(lesson) {
     clearKeyHandler();
     var slides = lesson.cards.map(function (c) {
@@ -83,21 +110,7 @@
         '</div>' +
       '</section>'
     );
-    slides.push(
-      '<section class="card quiz-card">' +
-        '<div class="card-text">' +
-          '<h2 class="card-heading">셀프 체크</h2>' +
-          '<div class="card-body quiz-body">' + (lesson.quiz.q || lesson.quiz) + '</div>' +
-          (lesson.quiz.a ?
-            '<button class="reveal-btn" id="revealBtn">정답 보기</button>' +
-            '<div class="quiz-answer" id="quizAnswer" hidden>' +
-              '<div class="answer-label">정답</div>' +
-              '<div class="card-body">' + lesson.quiz.a + '</div>' +
-            '</div>'
-          : '') +
-        '</div>' +
-      '</section>'
-    );
+    quizCards(lesson.quiz).forEach(function (s) { slides.push(s); });
     var total = slides.length;
 
     app.innerHTML = '' +
@@ -167,11 +180,6 @@
     document.getElementById('prevBtn').addEventListener('click', function () { goTo(current - 1); });
     document.getElementById('nextBtn').addEventListener('click', function () { goTo(current + 1); });
     document.getElementById('backBtn').addEventListener('click', function () { location.hash = '#/'; });
-    var revealBtn = document.getElementById('revealBtn');
-    if (revealBtn) revealBtn.addEventListener('click', function () {
-      document.getElementById('quizAnswer').hidden = false;
-      revealBtn.hidden = true;
-    });
 
     activeKeyHandler = function (e) {
       if (e.key === 'ArrowRight') goTo(current + 1);
