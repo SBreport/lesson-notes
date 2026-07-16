@@ -9,6 +9,10 @@
 
 * { box-sizing: border-box; }
 
+/* 네이티브 스크롤바 전부 숨김 (스와이프/커스텀 진행바로 대체) */
+html, body, .deck, .deck-wrap, .card, #app { scrollbar-width: none; -ms-overflow-style: none; }
+::-webkit-scrollbar { width: 0; height: 0; display: none; }
+
 html, body {
   margin: 0;
   padding: 0;
