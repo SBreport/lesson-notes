@@ -294,6 +294,45 @@ button {
   text-align: right;
 }
 
+/* 다음 강의 카드 */
+.nav-card .nav-inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+.nav-done { font-size: 18px; font-weight: 800; color: var(--text); }
+.nav-next {
+  width: 100%;
+  max-width: 420px;
+  border: none;
+  border-radius: 16px;
+  background: var(--accent);
+  color: #fff;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  text-align: left;
+  position: relative;
+}
+.nav-next:active { opacity: 0.9; }
+.nav-next-label { font-size: 13px; opacity: 0.85; }
+.nav-next-title { font-size: 18px; font-weight: 800; padding-right: 28px; }
+.nav-next-arrow { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); font-size: 24px; }
+.nav-home {
+  border: none;
+  background: none;
+  color: var(--text-sub);
+  font-size: 15px;
+  text-decoration: underline;
+  padding: 8px;
+}
+
 .arrow {
   display: none;
 }

@@ -111,6 +111,24 @@
       '</section>'
     );
     quizCards(lesson.quiz).forEach(function (s) { slides.push(s); });
+
+    // 마지막: 다음 강의로 이어보기 카드
+    var idx = LESSONS.findIndex(function (l) { return l.id === lesson.id; });
+    var next = LESSONS[idx + 1];
+    slides.push(
+      '<section class="card nav-card"><div class="card-text nav-inner">' +
+        (next
+          ? '<div class="nav-done">여기까지 ' + escapeHtml(lesson.id) + ' 끝!</div>' +
+            '<button class="nav-next" data-go="' + next.id + '">' +
+              '<span class="nav-next-label">다음 강의</span>' +
+              '<span class="nav-next-title">' + escapeHtml(next.id) + ' · ' + escapeHtml(next.title) + '</span>' +
+              '<span class="nav-next-arrow">→</span>' +
+            '</button>'
+          : '<div class="nav-done">마지막 강의까지 완주했어요.</div>') +
+        '<button class="nav-home" data-home>목록으로</button>' +
+      '</div></section>'
+    );
+
     var total = slides.length;
 
     app.innerHTML = '' +
@@ -180,6 +198,13 @@
     document.getElementById('prevBtn').addEventListener('click', function () { goTo(current - 1); });
     document.getElementById('nextBtn').addEventListener('click', function () { goTo(current + 1); });
     document.getElementById('backBtn').addEventListener('click', function () { location.hash = '#/'; });
+    var navNext = app.querySelector('.nav-next[data-go]');
+    if (navNext) navNext.addEventListener('click', function () {
+      location.hash = '#/' + navNext.getAttribute('data-go');
+      var v = document.querySelector('.episode-view'); if (v) v.scrollTop = 0;
+    });
+    var navHome = app.querySelector('[data-home]');
+    if (navHome) navHome.addEventListener('click', function () { location.hash = '#/'; });
 
     activeKeyHandler = function (e) {
       if (e.key === 'ArrowRight') goTo(current + 1);
