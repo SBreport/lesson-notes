@@ -119,6 +119,29 @@ button {
   margin: 0 4px 22px;
 }
 
+.home-playlist {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 4px 4px;
+  padding: 13px 16px;
+  border-radius: 14px;
+  background: #E62117;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.home-playlist-icon {
+  font-size: 13px;
+  line-height: 1;
+}
+.home-playlist-arrow {
+  margin-left: auto;
+  font-weight: 800;
+  opacity: .85;
+}
+
 .series-range {
   font-size: 12px;
   font-weight: 600;

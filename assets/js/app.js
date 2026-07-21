@@ -68,7 +68,12 @@
     ];
     var epNum = function (l) { return parseInt(l.id.replace(/\D/g, ''), 10); };
     var html = '<div class="home"><div class="home-title">외단열 시공 A to Z</div>' +
-      '<div class="home-sub">단열재부터 마감 바름재까지, 시공 순서대로 (전 10강)</div>';
+      '<div class="home-sub">단열재부터 마감 바름재까지, 시공 순서대로 (전 10강)</div>' +
+      '<a class="home-playlist" href="https://youtube.com/playlist?list=PLH45TRjy-7l0&si=9n20OD6PatSNxCSX" target="_blank" rel="noopener">' +
+        '<span class="home-playlist-icon" aria-hidden="true">▶</span>' +
+        '<span>전체 강의 영상으로 보기</span>' +
+        '<span class="home-playlist-arrow" aria-hidden="true">→</span>' +
+      '</a>';
     groups.forEach(function (g) {
       var items = LESSONS.filter(function (l) { return g.eps.indexOf(epNum(l)) !== -1; });
       html += '<div class="series-heading">' + escapeHtml(g.label) + ' <span class="series-range">' + escapeHtml(g.desc) + '</span></div><div class="tile-list">';
